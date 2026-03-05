@@ -56,8 +56,12 @@ export const metadata: Metadata = {
     images: ['https://fundfinpro.com/thumb.webp'],
   },
   robots: {
-    index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   verification: {
     google: '여기에_구글_인증코드_입력',

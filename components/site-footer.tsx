@@ -12,7 +12,7 @@ export function SiteFooter() {
               className="flex items-center gap-2 text-foreground"
               aria-label="청년 미래적금 홈"
             >
-              <PiggyBank className="h-6 w-6 text-primary" />
+              <img src="/logo.ico" alt="로고" className="h-6 w-6" />
               <span className="text-lg font-bold tracking-tight">
                 청년 미래적금
               </span>
