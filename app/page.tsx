@@ -1,63 +1,199 @@
+"use client";
+
+import { useState, useMemo } from "react"
 import Link from "next/link"
-import { ArrowRight, TrendingUp, Shield, Clock, Gift, Check, X } from "lucide-react"
+import { ArrowRight, TrendingUp, Shield, Clock, Gift, Check, X, Calculator } from "lucide-react"
 
 function HeroSection() {
+  const [monthlyPayment, setMonthlyPayment] = useState<number>(500000); // 월 납입액 (원)
+  const [accountType, setAccountType] = useState<string>("general"); // 일반형 | 우대형
+  const [interestRate, setInterestRate] = useState<number>(5.0); // 총 금리 (%)
+  const duration = 36; // 3년 고정
+
+  const result = useMemo(() => {
+    // 1. 내가 넣은 총 원금
+    const totalPrincipal = monthlyPayment * duration;
+
+    // 2. 정부 매칭 지원금
+    let monthlySupport = 0;
+    if (accountType === "preferred") {
+      // 우대형: 납입액의 12% (월 최대 6만원)
+      monthlySupport = Math.min(monthlyPayment * 0.12, 60000);
+    } else {
+      // 일반형: 납입액의 6% (월 최대 3만원)
+      monthlySupport = Math.min(monthlyPayment * 0.06, 30000);
+    }
+
+    const totalGovernmentSupport = monthlySupport * duration;
+
+    // 3. 은행 이자 (연 이율 5% 단리 적용, (매달 납입되는 원금+지원금)에 대해 이자 계산)
+    const totalMonthlyDeposit = monthlyPayment + monthlySupport;
+    const totalInterest =
+      totalMonthlyDeposit * (duration * (duration + 1) / 2) * (interestRate / 100) * (1 / 12);
+
+    // 4. 최종 만기 수령액
+    const finalAmount = totalPrincipal + totalInterest + totalGovernmentSupport;
+
+    return {
+      totalPrincipal: Math.floor(totalPrincipal),
+      totalInterest: Math.floor(totalInterest),
+      totalGovernmentSupport: Math.floor(totalGovernmentSupport),
+      finalAmount: Math.floor(finalAmount)
+    };
+  }, [monthlyPayment, accountType, interestRate]);
+
   return (
-    <section className="relative overflow-hidden bg-card py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-card py-16 lg:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-[0.04]" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-            2026 청년 정책금융상품
-          </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
-            {"당신의 미래를 위한"}
-            <br />
-            <span className="text-primary">청년 미래적금</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
-            최대 연 6% 우대금리와 정부 지원금까지.
-            만 19~34세 청년이라면 지금 바로 시작하세요.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/eligibility"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              가입 자격 확인하기
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/details"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-7 py-3.5 text-base font-semibold text-foreground transition-colors hover:bg-muted"
-            >
-              상품 상세보기
-            </Link>
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+          
+          {/* 타이틀 및 텍스트 영역 (Left) */}
+          <div className="lg:col-span-5 text-center lg:text-left mb-12 lg:mb-0">
+            <p className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+              2026 청년 정책금융상품
+            </p>
+            <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-foreground text-balance md:text-5xl">
+              {"청년미래적금"}
+              <br />
+              <span className="text-primary mt-2 block">만기수령액 계산기</span>
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-pretty">
+              최대 연 16.9% 수준의 파격 혜택! 3년만 유지해도 최대 2,200만원 달성. 내 조건으로 가입하면 3년 뒤 내 돈은 과연 얼마일까요?
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+              <Link
+                href="/details"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                상품 상세보기
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            
+            <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border pt-8">
+              <div>
+                <p className="text-xl font-bold text-primary">약 16.9%</p>
+                <p className="mt-1 text-xs text-muted-foreground">최고 적금효과</p>
+              </div>
+              <div className="border-x border-border">
+                <p className="text-xl font-bold text-primary">50만</p>
+                <p className="mt-1 text-xs text-muted-foreground">월 최대 납입</p>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-primary">3년</p>
+                <p className="mt-1 text-xs text-muted-foreground">짧아진 만기</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Stats bar */}
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-6 rounded-2xl border border-border bg-card p-6 shadow-sm lg:mt-20">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-primary lg:text-3xl">6%</p>
-            <p className="mt-1 text-xs text-muted-foreground lg:text-sm">
-              최고 우대금리
-            </p>
+          {/* 계산기 영역 (Right) */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl border border-border bg-background p-6 shadow-xl lg:p-8">
+              <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
+                <div className="rounded-lg bg-primary/10 p-2">
+                  <Calculator className="h-6 w-6 text-primary" />
+                </div>
+                <h2 className="text-xl font-bold text-foreground">만기 수령액 미리보기</h2>
+              </div>
+
+              <div className="space-y-6">
+                {/* 월 납입금 배열 */}
+                <div>
+                  <label className="text-sm font-semibold text-foreground flex justify-between">
+                    <span>월 납입 금액</span>
+                    <span className="text-primary">{monthlyPayment.toLocaleString()}원</span>
+                  </label>
+                  <input 
+                    type="range" 
+                    min="1000" 
+                    max="500000" 
+                    step="1000"
+                    value={monthlyPayment} 
+                    onChange={(e) => setMonthlyPayment(Number(e.target.value))}
+                    className="w-full mt-3 accent-primary" 
+                  />
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                    <span>1천원</span>
+                    <span>50만원</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* 가입 유형 (소득 조건) */}
+                  <div>
+                    <label className="text-sm font-semibold text-foreground mb-2 block">가입 유형 (소득기준)</label>
+                    <select 
+                      value={accountType} 
+                      onChange={(e) => setAccountType(e.target.value)}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                      <option value="general">일반형 (연소득 6천만원 이하 등)</option>
+                      <option value="preferred">우대형 (연소득 3,600만원 이하 등)</option>
+                    </select>
+                    {accountType === "general" && (
+                      <div className="mt-2 rounded-md bg-secondary/50 p-2 text-xs text-muted-foreground">
+                        💡 매달 납입하는 금액의 <strong className="text-foreground">6%</strong>를 정부가 더 내줘요!<br />
+                        (월 최대 3만원 지원)
+                      </div>
+                    )}
+                    {accountType === "preferred" && (
+                      <div className="mt-2 rounded-md bg-primary/10 p-2 text-xs text-primary">
+                        ✨ 매달 납입하는 금액의 <strong>12%</strong>를 정부가 팍팍 더 내줘요!<br />
+                        (월 최대 6만원 특별 지원)
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 적용 금리 */}
+                  <div>
+                    <label className="text-sm font-semibold text-foreground mb-2 block">
+                      적용 은행금리 (%)
+                    </label>
+                    <div className="relative">
+                      <input 
+                        type="number" 
+                        value={interestRate} 
+                        onChange={(e) => setInterestRate(Number(e.target.value))}
+                        step="0.1"
+                        min="3.5"
+                        max="6.0"
+                        className="w-full rounded-md border border-input bg-background pl-3 pr-8 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                      <span className="absolute right-3 top-2 text-muted-foreground text-sm font-medium">%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 결과 박스 */}
+              <div className="mt-8 rounded-xl bg-secondary/50 p-5 border border-border">
+                <div className="space-y-3 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">[원금 합계] ({duration}개월)</span>
+                    <span className="font-semibold text-foreground">{result.totalPrincipal.toLocaleString()}원</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">+ [정부지원금 합계]</span>
+                    <span className="font-semibold text-accent">{result.totalGovernmentSupport.toLocaleString()}원</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">+ [은행이자 합계] (비과세)</span>
+                    <span className="font-semibold text-primary">{result.totalInterest.toLocaleString()}원</span>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t border-border flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                  <span className="text-base font-bold text-foreground">[최종 수령액]</span>
+                  <span className="text-3xl font-bold tracking-tight text-primary">
+                    {result.finalAmount.toLocaleString()}<span className="text-lg ml-1 text-foreground">원</span>
+                  </span>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div className="border-x border-border text-center">
-            <p className="text-2xl font-bold text-primary lg:text-3xl">
-              70만
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground lg:text-sm">
-              월 최대 납입액
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold text-primary lg:text-3xl">5년</p>
-            <p className="mt-1 text-xs text-muted-foreground lg:text-sm">
-              최대 가입기간
-            </p>
-          </div>
+
         </div>
       </div>
     </section>
@@ -66,16 +202,12 @@ function HeroSection() {
 
 const comparisonRows = [
   { label: "가입 연령", future: "만 19~34세", leap: "만 19~34세" },
-  { label: "소득 조건", future: "총급여 7,500만원 이하", leap: "총급여 7,500만원 이하" },
-  { label: "월 납입한도", future: "최대 70만원", leap: "최대 70만원" },
-  { label: "가입 기간", future: "3년 / 5년", leap: "5년" },
-  { label: "기본금리", future: "연 4.5%", leap: "연 3.5~4.5%" },
-  { label: "최고 우대금리", future: "연 6.0%", leap: "연 6.0%" },
-  { label: "정부 매칭", future: "소득에 따라 최대 6%", leap: "소득에 따라 최대 6%" },
+  { label: "소득 조건", future: "연소득 6,000만원 이하 (일반/우대형)", leap: "총급여 7,500만원 이하" },
+  { label: "월 납입한도", future: "월 최대 50만원", leap: "월 최대 70만원" },
+  { label: "가입 기간", future: "단 3년", leap: "5년" },
+  { label: "정부 기여금", future: "납입액의 6~12%", leap: "소득에 따라 최대 6%" },
+  { label: "실질 수익률", future: "최고 연 16.9% 수준", leap: "최고 연 8~9% 수준" },
   { label: "비과세 혜택", future: true, leap: true },
-  { label: "중도 해지 시 정부기여금", future: "비율 차감 지급", leap: "미지급" },
-  { label: "3년 만기 옵션", future: true, leap: false },
-  { label: "자유적립식", future: true, leap: true },
 ]
 
 function ComparisonSection() {
@@ -211,27 +343,27 @@ function ComparisonSection() {
 const benefits = [
   {
     icon: TrendingUp,
-    title: "최대 연 6% 금리",
+    title: "연 16.9% 강력한 혜택",
     description:
-      "기본금리에 우대금리를 더해 최대 연 6%의 높은 이자를 받을 수 있습니다.",
+      "일반 적금 기준 연 12.0~16.9% 수준의 이자 효과를 볼 수 있는 압도적인 최고 수익률을 자랑합니다.",
   },
   {
     icon: Gift,
-    title: "정부 지원금",
+    title: "최대 12% 정부 기여금",
     description:
-      "매칭 비율에 따라 정부가 추가 지원금을 적립해 드립니다. 소득에 따라 최대 6% 매칭.",
-  },
-  {
-    icon: Shield,
-    title: "비과세 혜택",
-    description:
-      "이자소득 비과세 혜택을 통해 세금 부담 없이 목돈을 마련할 수 있습니다.",
+      "조건에 따라 내가 넣은 돈의 최소 6%(최대 3만원)에서 12%(최대 6만원)까지 정부가 추가로 얹어줍니다.",
   },
   {
     icon: Clock,
-    title: "유연한 납입",
+    title: "단 3년, 짧은 만기",
     description:
-      "매월 최소 1,000원부터 최대 70만원까지, 나에게 맞는 금액으로 자유롭게 납입하세요.",
+      "기존 5년 만기의 부담을 덜어내고, 3년만 유지해도 최대 2,200만원 수준의 든든한 목돈을 쉽게 모을 수 있습니다.",
+  },
+  {
+    icon: Shield,
+    title: "15.4% 전면 비과세",
+    description:
+      "일반 적금에서 떼어가는 15.4%의 이자 소득세를 전액 면제받아, 모든 이익을 100% 내 통장으로 가져옵니다.",
   },
 ]
 
@@ -278,11 +410,11 @@ function CTASection() {
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
         <div className="rounded-3xl bg-primary px-6 py-16 text-center lg:px-16 lg:py-20">
           <h2 className="text-2xl font-bold text-primary-foreground text-balance md:text-3xl lg:text-4xl">
-            지금 바로 시작하세요
+            가장 빠른 목돈 마련의 길
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-primary-foreground/80">
-            가입 자격만 확인하면 간편하게 신청할 수 있습니다.
-            청년 미래적금으로 목돈 마련의 첫 걸음을 내딛으세요.
+            연 16.9% 수준의 파격적인 혜택과 비과세까지.
+            지금 바로 청년미래적금 가입 대상을 확인하세요.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link

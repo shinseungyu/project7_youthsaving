@@ -14,27 +14,27 @@ const notoSansKR = Noto_Sans_KR({
 
 export const metadata: Metadata = {
   title: {
-    default: "청년 미래적금 | 2026 정부지원 청년 우대 적금",
-    template: "%s | 청년 미래적금",
+    default: "청년미래적금 - 만기수령계산기 | 2026 청년도약계좌",
+    template: "%s | 청년미래적금 계산기",
   },
   description:
-    "청년 미래적금으로 최대 연 6% 금리와 정부 지원금 혜택을 받으세요. 만 19~34세 청년이라면 누구나 가입 가능한 청년 우대 적금 상품입니다.",
+    "청년미래적금(청년도약계좌) 만기수령액을 실시간으로 확인하세요. 내 월급과 납입액에 따른 기본금리, 매칭지원금, 비과세 혜택까지 한번에 계산해 드립니다.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fundfinpro.com'),
   alternates: {
     canonical: '/',
   },
   keywords: [
-    "청년 미래적금",
-    "청년 적금",
-    "정부지원 적금",
-    "청년 우대 금리",
-    "청년 재테크",
-    "적금 추천",
+    "청년미래적금",
+    "청년도약계좌",
+    "만기수령액 계산기",
+    "청년적금 계산기",
+    "정부지원금 계산기",
+    "청년재테크",
   ],
   openGraph: {
-    title: "청년 미래적금 | 정부지원 청년 우대 적금",
+    title: "청년미래적금 - 만기수령액 계산기",
     description:
-      "최대 연 6% 금리와 정부 지원금 혜택. 만 19~34세 청년이라면 지금 바로 가입하세요.",
+      "매월 얼마씩 넣으면 정부지원금은 얼마일까요? 내 만기수령액을 지금 바로 계산해보세요.",
     url: '/',
     type: "website",
     locale: "ko_KR",
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "청년 미래적금 | 정부지원 청년 우대 적금",
+    title: "청년미래적금 - 만기수령계산기",
     description:
-      "최대 연 6% 금리와 정부 지원금 혜택. 만 19~34세 청년이라면 지금 바로 가입하세요.",
+      "매월 얼마씩 넣으면 5년 뒤 내 돈은 얼마일까? 청년 미래적금 만기수령액을 지금 바로 계산해보세요.",
     images: ['https://fundfinpro.com/thumb.webp'],
   },
   robots: {
@@ -79,8 +79,8 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: '청년 미래적금 | 정부지원 청년 우대 적금',
-    description: '최대 연 6% 금리와 정부 지원금 혜택. 만 19~34세 청년이라면 누구나 가입 가능한 청년 우대 적금 상품입니다.',
+    name: '청년미래적금 - 만기수령계산기 | 2026 청년도약계좌',
+    description: '청년미래적금(청년도약계좌) 만기수령액을 실시간으로 확인하세요. 납입액에 따른 금리, 정부지원금, 비과세 혜택까지 한번에 계산해 드립니다.',
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'All',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fundfinpro.com',
