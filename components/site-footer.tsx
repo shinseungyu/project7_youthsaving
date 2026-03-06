@@ -56,29 +56,10 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          <div>
-            <h3 className="text-sm font-semibold text-foreground">
-              고객센터
-            </h3>
-            <ul className="mt-3 flex flex-col gap-2" role="list">
-              <li className="text-sm text-muted-foreground">
-                전화: 1588-0000
-              </li>
-              <li className="text-sm text-muted-foreground">
-                평일 09:00 ~ 18:00
-              </li>
-              <li className="text-sm text-muted-foreground">
-                이메일: support@fundfinpro.com
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6">
           <p className="text-center text-xs text-muted-foreground">
-            {"본 상품은 예금자보호법에 따라 예금보험공사가 보호합니다. (1인당 5천만원 한도)"}
-          </p>
-          <p className="mt-2 text-center text-xs text-muted-foreground">
             {"© 2026 FundFinPro. All rights reserved."}
           </p>
         </div>

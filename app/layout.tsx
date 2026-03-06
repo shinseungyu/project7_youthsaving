@@ -14,7 +14,7 @@ const notoSansKR = Noto_Sans_KR({
 
 export const metadata: Metadata = {
   title: {
-    default: "청년미래적금 - 만기수령계산기 | 2026 청년도약계좌",
+    default: "2026 청년미래적금 - 만기수령계산기",
     template: "%s | 청년미래적금 계산기",
   },
   description:

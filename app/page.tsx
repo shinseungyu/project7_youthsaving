@@ -404,6 +404,60 @@ function BenefitsSection() {
   )
 }
 
+function FAQSection() {
+  const faqs = [
+    {
+      question: "청년미래적금과 청년도약계좌의 차이점은 무엇인가요?",
+      answer: "청년미래적금은 기존 청년도약계좌의 긴 만기(5년) 부담을 덜기 위해 3년 만기로 설계된 상품입니다. 가입 기간은 짧아졌지만 정부 기여금 혜택은 더욱 강화되었습니다."
+    },
+    {
+      question: "소득이 없어도 가입이 가능한가요?",
+      answer: "기본적으로 소득이 있는 청년을 대상으로 하지만, 직종이나 고용 형태에 상관없이 일정 수준 이하의 소득 증빙이 가능하다면 가입할 수 있습니다. 세부 자격은 가입 시점의 공고를 확인해주세요."
+    },
+    {
+      question: "중도 해지하면 정부 지원금을 받을 수 없나요?",
+      answer: "특별한 사유(특별중도해지 사유 등) 없이 중도 해지할 경우 정부 지원금과 비과세 혜택을 전액 받지 못할 수 있습니다. 하지만 2026년 상품 기준에 따라 일정 기간 이상 유지 시 부분 지급 옵션이 검토되고 있습니다."
+    },
+    {
+      question: "가입 기간 중 월 납입액을 변경할 수 있나요?",
+      answer: "네, 자유적립식 상품이므로 월 최대 50만원 한도 내에서 자유롭게 납입 금액을 변경하거나 일시적으로 납입하지 않아도 계좌는 유지됩니다."
+    }
+  ];
+
+  return (
+    <section className="bg-muted/30 py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            자주 묻는 질문 (Q&A)
+          </h2>
+          <p className="mt-4 text-base text-muted-foreground">
+            청년미래적금에 대해 가장 궁금해하시는 점들을 모았습니다.
+          </p>
+        </div>
+
+        <div className="mt-12 space-y-4">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index} 
+              className="rounded-2xl border border-border bg-background p-6 shadow-sm"
+            >
+              <h3 className="text-lg font-semibold text-foreground flex items-start gap-3">
+                <span className="text-primary font-bold">Q.</span>
+                {faq.question}
+              </h3>
+              <div className="mt-3 flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
+                <span className="text-accent font-bold">A.</span>
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function CTASection() {
   return (
     <section className="bg-card py-20 lg:py-28">
@@ -443,6 +497,7 @@ export default function HomePage() {
       <HeroSection />
       <ComparisonSection />
       <BenefitsSection />
+      <FAQSection />
       <CTASection />
     </main>
   )
