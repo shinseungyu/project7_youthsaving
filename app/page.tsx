@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, TrendingUp, Shield, Clock, Gift, Check, X, Calculator } from "lucide-react"
+import postsData from "@/data/posts.json"
 
 function HeroSection() {
   const [monthlyPayment, setMonthlyPayment] = useState<number>(500000); // 월 납입액 (원)
@@ -491,12 +492,57 @@ function CTASection() {
   )
 }
 
+function BoardPreviewSection() {
+  return (
+    <section className="bg-background py-20 lg:py-28">
+      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="mb-10 flex items-end justify-between">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              청년 재테크 게시판
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              청년미래적금과 목돈 마련을 위한 유용한 팁
+            </p>
+          </div>
+          <Link href="/board" className="text-sm font-semibold text-primary hover:underline">
+            전체 글 보기 →
+          </Link>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {(postsData as any[]).slice(0, 3).map((post: any) => (
+            <Link 
+              key={post.id} 
+              href={`/board?id=${post.id}`} 
+              className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 transition-all hover:bg-muted/50 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                    {post.category}
+                  </span>
+                  <span className="text-sm text-muted-foreground">{post.date}</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground">
+                  {post.title}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
       <ComparisonSection />
       <BenefitsSection />
+      <BoardPreviewSection />
       <FAQSection />
       <CTASection />
     </main>

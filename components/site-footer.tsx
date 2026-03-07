@@ -60,7 +60,15 @@ export function SiteFooter() {
 
         <div className="mt-10 border-t border-border pt-6">
           <p className="text-center text-xs text-muted-foreground">
-            {"© 2026 FundFinPro. All rights reserved."}
+            본 계산기의 결과는 참고용이며, 실제 금융기관의 심사 결과와 다를 수 있습니다.
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+            <Link href="/privacy-policy" className="hover:text-foreground">개인정보 처리방침</Link>
+            <Link href="/terms-of-service" className="hover:text-foreground">이용약관</Link>
+            <Link href="/cookie-policy" className="hover:text-foreground">쿠키 정책</Link>
+          </div>
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            © 2026 fundfinpro.com · 문의: tlsfkaus0711@gmail.com
           </p>
         </div>
       </div>
