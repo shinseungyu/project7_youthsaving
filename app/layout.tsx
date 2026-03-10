@@ -14,27 +14,31 @@ const notoSansKR = Noto_Sans_KR({
 
 export const metadata: Metadata = {
   title: {
-    default: "2026 청년미래적금 - 만기수령계산기",
-    template: "%s | 청년미래적금 계산기",
+    default: "청년미래적금 만기 수령 계산기 | 3년 만기수령액 및 정부지원금 확인",
+    template: "%s | 청년미래적금 만기수령 계산기",
   },
   description:
-    "청년미래적금(청년도약계좌) 만기수령액을 실시간으로 확인하세요. 내 월급과 납입액에 따른 기본금리, 매칭지원금, 비과세 혜택까지 한번에 계산해 드립니다.",
+    "2026년 청년미래적금 만기수령액을 쉽고 빠르게 계산하세요. 매월 납입 금액에 따른 만기수령 계산, 정부기여금(6~12%), 비과세 혜택 결과를 10초 만에 확인 가능한 무료 계산기입니다.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fundfinpro.com'),
   alternates: {
     canonical: '/',
   },
   keywords: [
     "청년미래적금",
+    "청년미래적금 만기수령 계산기",
+    "만기수령 계산",
+    "청년미래적금 혜택",
     "청년도약계좌",
-    "만기수령액 계산기",
+    "정부기여금 계산",
+    "비과세 적금",
     "청년적금 계산기",
     "정부지원금 계산기",
     "청년재테크",
   ],
   openGraph: {
-    title: "청년미래적금 - 만기수령액 계산기",
+    title: "청년미래적금 만기 수령 계산기 | 3년 만기수령액 및 정부지원금 확인",
     description:
-      "매월 얼마씩 넣으면 정부지원금은 얼마일까요? 내 만기수령액을 지금 바로 계산해보세요.",
+      "2026년 청년미래적금 만기수령액을 쉽고 빠르게 계산하세요. 정부기여금(6~12%), 비과세 혜택 결과를 10초 만에 확인하세요.",
     url: '/',
     type: "website",
     locale: "ko_KR",
@@ -44,18 +48,19 @@ export const metadata: Metadata = {
         url: 'https://fundfinpro.com/thumb.webp',
         width: 1200,
         height: 630,
-        alt: '청년 미래적금 썸네일',
+        alt: '청년미래적금 만기수령 계산기 썸네일',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "청년미래적금 - 만기수령계산기",
+    title: "청년미래적금 만기 수령 계산기 | 3년 만기수령액 및 정부지원금 확인",
     description:
-      "매월 얼마씩 넣으면 5년 뒤 내 돈은 얼마일까? 청년 미래적금 만기수령액을 지금 바로 계산해보세요.",
+      "정부기여금(일반형 6%, 우대형 12%)과 비과세 혜택까지 포함한 내 만기수령액을 10초 만에 계산해보세요.",
     images: ['https://fundfinpro.com/thumb.webp'],
   },
   robots: {
+    index: true,
     follow: true,
   },
   icons: {

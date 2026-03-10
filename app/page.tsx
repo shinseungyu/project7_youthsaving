@@ -91,12 +91,13 @@ function HeroSection() {
           {/* 계산기 영역 (Right) */}
           <div className="lg:col-span-7">
             <div className="rounded-2xl border border-border bg-background p-6 shadow-xl lg:p-8">
-              <div className="flex items-center gap-3 border-b border-border pb-4 mb-6">
+              <div className="flex items-center gap-3 border-b border-border pb-4 mb-2">
                 <div className="rounded-lg bg-primary/10 p-2">
                   <Calculator className="h-6 w-6 text-primary" />
                 </div>
-                <h2 className="text-xl font-bold text-foreground">만기 수령액 미리보기</h2>
+                <h2 className="text-xl font-bold text-foreground">청년미래적금 만기수령 계산 방법</h2>
               </div>
+              <p className="text-xs text-muted-foreground mb-5">월 납입액과 가입 유형을 선택하면 3년 만기수령액이 자동으로 계산됩니다.</p>
 
               <div className="space-y-6">
                 {/* 월 납입금 배열 */}
@@ -169,6 +170,7 @@ function HeroSection() {
 
               {/* 결과 박스 */}
               <div className="mt-8 rounded-xl bg-secondary/50 p-5 border border-border">
+                <h3 className="text-sm font-bold text-foreground mb-4">3년 뒤 내 만기수령액은 얼마일까?</h3>
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">[원금 합계] ({duration}개월)</span>
@@ -191,6 +193,11 @@ function HeroSection() {
                   </span>
                 </div>
               </div>
+
+              {/* SEO 키워드 안내 문구 */}
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground rounded-lg bg-muted/40 px-4 py-3 border border-border">
+                💡 <strong className="text-foreground">정부 기여금</strong>은 일반형 6%(월 최대 3만원), 우대형 12%(월 최대 6만원)가 지급되며, 만기 시 발생하는 모든 이자에 대해 <strong className="text-foreground">비과세 혜택</strong>(15.4% 면제)이 적용됩니다.
+              </p>
 
             </div>
           </div>
