@@ -4,7 +4,7 @@ import { PiggyBank } from "lucide-react"
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto max-w-6xl px-4 py-12 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 py-12 lg:px-8">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <Link

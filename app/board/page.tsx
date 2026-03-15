@@ -31,7 +31,7 @@ export default async function BoardPage({ searchParams }: Props) {
 
     if (!post) {
       return (
-        <main className="mx-auto max-w-4xl px-4 py-16">
+        <main className="mx-auto max-w-[1200px] px-4 py-16">
           <p className="text-muted-foreground">게시글을 찾을 수 없습니다.</p>
           <Link href="/board" className="text-primary mt-4 inline-block">← 목록으로</Link>
         </main>
@@ -39,7 +39,7 @@ export default async function BoardPage({ searchParams }: Props) {
     }
 
     return (
-      <main className="mx-auto max-w-4xl px-4 py-16">
+      <main className="mx-auto max-w-[1200px] px-4 py-16">
         <Link href="/board" className="mb-8 inline-flex items-center text-sm font-medium text-primary hover:underline">
           ← 목록으로
         </Link>
@@ -83,7 +83,7 @@ export default async function BoardPage({ searchParams }: Props) {
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-16">
+    <main className="mx-auto max-w-[1200px] px-4 py-16">
       <Link href="/" className="mb-8 inline-flex items-center text-sm font-medium text-primary hover:underline">
         ← 계산기 홈으로
       </Link>

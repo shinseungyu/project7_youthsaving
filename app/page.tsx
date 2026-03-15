@@ -46,7 +46,7 @@ function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-card py-16 lg:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-[0.04]" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="relative mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
           
           {/* 타이틀 및 텍스트 영역 (Left) */}
@@ -100,20 +100,33 @@ function HeroSection() {
               <p className="text-xs text-muted-foreground mb-5">월 납입액과 가입 유형을 선택하면 3년 만기수령액이 자동으로 계산됩니다.</p>
 
               <div className="space-y-6">
-                {/* 월 납입금 배열 */}
+                {/* 월 납입금 */}
                 <div>
-                  <label className="text-sm font-semibold text-foreground flex justify-between">
-                    <span>월 납입 금액</span>
-                    <span className="text-primary">{monthlyPayment.toLocaleString()}원</span>
-                  </label>
-                  <input 
-                    type="range" 
-                    min="1000" 
-                    max="500000" 
+                  <label className="text-sm font-semibold text-foreground block mb-3">월 납입 금액</label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="number"
+                      min="1000"
+                      max="500000"
+                      step="1000"
+                      value={monthlyPayment}
+                      onChange={(e) => {
+                        const v = Math.min(500000, Math.max(1000, Number(e.target.value) || 1000));
+                        setMonthlyPayment(v);
+                      }}
+                      className="w-36 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span className="text-sm text-muted-foreground shrink-0">원</span>
+                    <span className="ml-auto text-primary font-semibold text-sm">{monthlyPayment.toLocaleString()}원</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1000"
+                    max="500000"
                     step="1000"
-                    value={monthlyPayment} 
+                    value={monthlyPayment}
                     onChange={(e) => setMonthlyPayment(Number(e.target.value))}
-                    className="w-full mt-3 accent-primary" 
+                    className="w-full mt-3 accent-primary"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>1천원</span>
@@ -221,7 +234,7 @@ const comparisonRows = [
 function ComparisonSection() {
   return (
     <section className="bg-background py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl">
             청년미래적금 vs 청년도약계좌
@@ -378,7 +391,7 @@ const benefits = [
 function BenefitsSection() {
   return (
     <section className="bg-background py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl">
             왜 청년 미래적금인가요?
@@ -434,7 +447,7 @@ function FAQSection() {
 
   return (
     <section className="bg-muted/30 py-20 lg:py-28">
-      <div className="mx-auto max-w-4xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             자주 묻는 질문 (Q&A)
@@ -469,7 +482,7 @@ function FAQSection() {
 function CTASection() {
   return (
     <section className="bg-card py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="rounded-3xl bg-primary px-6 py-16 text-center lg:px-16 lg:py-20">
           <h2 className="text-2xl font-bold text-primary-foreground text-balance md:text-3xl lg:text-4xl">
             가장 빠른 목돈 마련의 길
@@ -499,10 +512,57 @@ function CTASection() {
   )
 }
 
+function SwitchGuideSection() {
+  return (
+    <section className="bg-card py-20 lg:py-28">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+          <div>
+            <span className="inline-flex items-center rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+              전환 가이드
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl">
+              청년도약계좌에서<br />
+              <span className="text-primary">청년미래적금</span>으로<br />
+              전환할 수 있을까?
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              두 상품은 <strong className="text-foreground">동시 가입이 불가능</strong>합니다.
+              전환 방법, 중도해지 손실, 만기 후 가입 여부까지 한눈에 정리했습니다.
+            </p>
+            <Link
+              href="/switch-from-dooyak"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              전환 가이드 보기
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="mt-12 lg:mt-0 flex flex-col gap-4">
+            {[
+              { icon: "❌", title: "동시 가입 불가", desc: "청년도약계좌와 청년미래적금은 중복 가입이 안 됩니다." },
+              { icon: "⚠️", title: "중도해지 시 정부기여금 손실", desc: "청년도약계좌를 중도해지하면 정부기여금을 받지 못합니다." },
+              { icon: "✅", title: "만기 후 가입 가능", desc: "청년도약계좌 만기 수령 후 자격 요건을 충족하면 신규 가입 가능합니다." },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 rounded-2xl border border-border bg-background p-5">
+                <span className="text-2xl">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-foreground">{item.title}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function BoardPreviewSection() {
   return (
     <section className="bg-background py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="mb-10 flex items-end justify-between">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
@@ -549,6 +609,7 @@ export default function HomePage() {
       <HeroSection />
       <ComparisonSection />
       <BenefitsSection />
+      <SwitchGuideSection />
       <BoardPreviewSection />
       <FAQSection />
       <CTASection />

@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-8"
+        className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 lg:px-8"
         aria-label="메인 내비게이션"
       >
         <Link
@@ -48,6 +48,14 @@ export function SiteHeader() {
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               자격 확인
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/switch-from-dooyak"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              도약계좌 전환
             </Link>
           </li>
         </ul>
@@ -106,6 +114,15 @@ export function SiteHeader() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 자격 확인
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/switch-from-dooyak"
+                className="block text-base font-medium text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                도약계좌 전환
               </Link>
             </li>
             <li>

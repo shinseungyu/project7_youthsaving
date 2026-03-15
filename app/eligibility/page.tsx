@@ -84,7 +84,7 @@ const faqItems = [
 export default function EligibilityPage() {
   return (
     <main className="bg-background py-16 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
             가입 자격 확인
