@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | 청년미래적금 만기수령 계산기",
   },
   description:
-    "2026년 청년미래적금 만기수령액을 쉽고 빠르게 계산하세요. 매월 납입 금액에 따른 만기수령 계산, 정부기여금(6~12%), 비과세 혜택 결과를 10초 만에 확인 가능한 무료 계산기입니다.",
+    "청년미래적금·청년도약계좌 만기 수령액을 바로 계산하세요. 월 납입금별 3년 만기수령액, 정부기여금(6~12%), 비과세 혜택까지 10초 만에 무료 확인.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fundfinpro.com'),
   alternates: {
     canonical: '/',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "청년미래적금 만기 수령 계산기 | 3년 만기수령액 및 정부지원금 확인",
     description:
-      "2026년 청년미래적금 만기수령액을 쉽고 빠르게 계산하세요. 정부기여금(6~12%), 비과세 혜택 결과를 10초 만에 확인하세요.",
+      "청년미래적금·청년도약계좌 만기 수령액을 바로 계산하세요. 월 납입금별 3년 만기수령액, 정부기여금(6~12%), 비과세 혜택까지 10초 만에 무료 확인.",
     url: '/',
     type: "website",
     locale: "ko_KR",
