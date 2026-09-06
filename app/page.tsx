@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, TrendingUp, Shield, Clock, Gift, Check, X, Calculator } from "lucide-react"
 import postsData from "@/data/posts.json"
+import { HOME_FAQS, homeFaqLd } from "@/lib/home-faqs"
 
 function HeroSection() {
   const [monthlyPayment, setMonthlyPayment] = useState<number>(500000); // 월 납입액 (원)
@@ -426,28 +427,7 @@ function BenefitsSection() {
 }
 
 function FAQSection() {
-  const faqs = [
-    {
-      question: "청년미래적금과 청년도약계좌의 차이점은 무엇인가요?",
-      answer: "청년미래적금은 기존 청년도약계좌의 긴 만기(5년) 부담을 덜기 위해 3년 만기로 설계된 상품입니다. 가입 기간은 짧아졌지만 정부 기여금 혜택은 더욱 강화되었습니다."
-    },
-    {
-      question: "소득이 없어도 가입이 가능한가요?",
-      answer: "기본적으로 소득이 있는 청년을 대상으로 하지만, 직종이나 고용 형태에 상관없이 일정 수준 이하의 소득 증빙이 가능하다면 가입할 수 있습니다. 세부 자격은 가입 시점의 공고를 확인해주세요."
-    },
-    {
-      question: "중도 해지하면 정부 지원금을 받을 수 없나요?",
-      answer: "특별한 사유(특별중도해지 사유 등) 없이 중도 해지할 경우 정부 지원금과 비과세 혜택을 전액 받지 못할 수 있습니다. 하지만 2026년 상품 기준에 따라 일정 기간 이상 유지 시 부분 지급 옵션이 검토되고 있습니다."
-    },
-    {
-      question: "가입 기간 중 월 납입액을 변경할 수 있나요?",
-      answer: "네, 자유적립식 상품이므로 월 최대 50만원 한도 내에서 자유롭게 납입 금액을 변경하거나 일시적으로 납입하지 않아도 계좌는 유지됩니다."
-    },
-    {
-      question: "2026년 청년미래적금 금리는 얼마인가요?",
-      answer: "2026년 3월 기준 청년미래적금 기본금리는 연 5.0%이며, 우대금리 조건 충족 시 최대 연 6.0%까지 적용됩니다. 정부 기여금(6~12%)과 비과세 혜택을 합산하면 실질 적금 효과는 연 16.9% 수준에 달합니다. 금리는 가입 시점에 따라 달라질 수 있으므로 가입 전 각 은행의 공시 금리를 반드시 확인하세요."
-    }
-  ];
+  const faqs = HOME_FAQS;
 
   return (
     <section className="bg-muted/30 py-20 lg:py-28">
@@ -610,6 +590,10 @@ function BoardPreviewSection() {
 export default function HomePage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqLd) }}
+      />
       <HeroSection />
       <ComparisonSection />
       <BenefitsSection />
