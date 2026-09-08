@@ -152,12 +152,13 @@ export default function RootLayout({
             gtag('config', 'G-0MBXYNK6XV');
           `}
         </Script>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5378247298190063"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        {/*
+          AdSense 로더는 여기(루트 레이아웃)에 두지 않는다.
+          루트 레이아웃은 404(app/not-found.tsx)에도 그대로 적용되는데,
+          게시자 정책상 "콘텐츠가 없거나 가치가 별로 없는 화면"과
+          "알림·탐색 목적의 화면"에는 광고를 실을 수 없다.
+          그래서 실제 콘텐츠가 있는 라우트만 감싸는 app/(site)/layout.tsx 로 옮겼다.
+        */}
       </head>
       <body
         className={`${notoSansKR.variable} font-sans antialiased`}
