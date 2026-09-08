@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import posts from '@/data/posts.json';
 import { lastModifiedOf } from '@/lib/article';
+import { AS_OF } from '@/lib/product';
 
 /**
  * lastModified 는 "실제 콘텐츠가 바뀐 날"만 넣는다.
@@ -8,7 +9,7 @@ import { lastModifiedOf } from '@/lib/article';
  * 그렇게 되면 구글은 이 사이트의 lastmod 를 신뢰하지 않고 통째로 무시한다.
  * 날짜를 모르는 정책 페이지는 아예 값을 넣지 않는다(잘못된 값보다 없는 편이 낫다).
  */
-const CONTENT_UPDATED = new Date('2026-09-06');
+const CONTENT_UPDATED = new Date(AS_OF);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fundfinpro.com';
@@ -24,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, lastModified: CONTENT_UPDATED, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/details`, lastModified: CONTENT_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/eligibility`, lastModified: CONTENT_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/banks`, lastModified: CONTENT_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/faq`, lastModified: CONTENT_UPDATED, changeFrequency: 'monthly', priority: 0.8 },
     // 헤더에는 있는데 사이트맵에서 빠져 있던 페이지
     { url: `${baseUrl}/switch-from-dooyak`, lastModified: CONTENT_UPDATED, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/board`, lastModified: CONTENT_UPDATED, changeFrequency: 'weekly', priority: 0.8 },

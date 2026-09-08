@@ -8,3 +8,6 @@ node_modules/
 .next/
 .env*.local
 .DS_Store
+# Python 캐시 (scripts/content 빌드 스크립트)
+__pycache__/
+*.pyc

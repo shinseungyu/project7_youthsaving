@@ -10,7 +10,7 @@ export default function CookiePolicyPage() {
   return (
     <main className="mx-auto max-w-[1200px] px-4 py-16 text-foreground">
       <h1 className="mb-2 text-3xl font-bold tracking-tight">쿠키 정책</h1>
-      <p className="mb-12 text-sm text-muted-foreground">최종 업데이트: 2026년 3월 8일</p>
+      <p className="mb-12 text-sm text-muted-foreground">최종 업데이트: 2026년 9월 8일</p>
 
       <div className="space-y-12 leading-relaxed">
         <section>
