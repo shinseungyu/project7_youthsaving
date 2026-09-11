@@ -6,6 +6,7 @@ import { HOME_FAQS, homeFaqLd } from '@/lib/home-faqs'
 import { AS_OF_LABEL, PRODUCT, SCHEDULE } from '@/lib/product'
 import { SourceNote } from '@/components/site-disclaimer'
 import { MaturityCalculator } from '@/components/maturity-calculator'
+import { WebtoonDokgoBanner } from '@/components/tenping-banner'
 import type { Post } from '@/lib/article'
 
 export const metadata: Metadata = {
@@ -384,6 +385,14 @@ export default function HomePage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqLd) }} />
       <HeroSection />
+
+      {/* 텐핑 제휴 배너 — 웹툰 독고 */}
+      <section className="bg-background pt-10">
+        <div className="mx-auto max-w-[1200px] px-4 lg:px-8">
+          <WebtoonDokgoBanner />
+        </div>
+      </section>
+
       <ComparisonSection />
       <BenefitsSection />
       <ScheduleSection />

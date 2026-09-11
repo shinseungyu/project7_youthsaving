@@ -6,6 +6,7 @@ import type { Post } from '@/lib/article'
 import { parseArticle, extractFaqs, extractHeadings, relatedPosts, lastModifiedOf } from '@/lib/article'
 import { ArticleBody, ArticleToc } from '@/components/article-body'
 import { SITE_TITLE, SITE_URL, OG_IMAGE, articleLd, breadcrumbLd, faqLd } from '@/lib/seo'
+import { WebtoonDokgoBanner } from '@/components/tenping-banner'
 
 const allPosts: Post[] = posts as Post[]
 
@@ -140,6 +141,9 @@ export default async function BoardPostPage({ params }: { params: Promise<{ id: 
           </Link>
         </aside>
       </article>
+
+      {/* 텐핑 제휴 배너 — 웹툰 독고 */}
+      <WebtoonDokgoBanner className="mt-10" />
 
       <section className="mt-16">
         <h2 className="mb-6 text-xl font-bold text-foreground">함께 보면 좋은 글</h2>
