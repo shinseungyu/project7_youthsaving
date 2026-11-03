@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { AS_OF_LABEL } from '@/lib/product'
 
 export const metadata: Metadata = {
   title: '개인정보 처리방침',
@@ -11,9 +10,9 @@ export const metadata: Metadata = {
 
 const CONTACT = 'tlsfkaus0711@gmail.com'
 
-function Section({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
+function Section({ n, title, id, children }: { n: number; title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section>
+    <section id={id} className="scroll-mt-20">
       <h2 className="mb-4 border-b border-border pb-2 text-xl font-bold">
         {n}. {title}
       </h2>
@@ -26,7 +25,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 text-foreground">
       <h1 className="mb-2 text-3xl font-bold tracking-tight">개인정보 처리방침</h1>
-      <p className="mb-12 text-sm text-muted-foreground">최종 업데이트: {AS_OF_LABEL}</p>
+      <p className="mb-12 text-sm text-muted-foreground">최종 업데이트: 2026년 11월 3일</p>
 
       <div className="space-y-12">
         <Section n={1} title="개요">
@@ -175,7 +174,57 @@ export default function PrivacyPolicyPage() {
           </p>
         </Section>
 
-        <Section n={13} title="문의처">
+        <Section n={13} title="Google 사용자 데이터 처리 (connectwell-seo-suite)" id="google-user-data">
+          <p>
+            이 섹션은 사이트 방문자가 아니라, 커넥트웰의 내부 마케팅 분석 도구 connectwell-seo-suite에
+            Google 계정 접근 권한을 부여한 사용자에게 적용됩니다. 이 도구는 커넥트웰의 내부 도구이며, 이
+            안내는 커넥트웰 직원이 운영하는 본 사이트에 게시되어 있습니다. 이 방침의 다른 조항 중
+            &quot;개인 운영 정보 사이트&quot;와 &quot;개인 식별 정보를 보관하지 않음&quot;에 관한 내용은
+            사이트 방문자에게 적용되는 내용이며, 이 도구에는 이 섹션이 적용됩니다.
+          </p>
+          <p>connectwell-seo-suite는 권한을 받은 Google 계정으로 다음 데이터에 접근합니다.</p>
+          <ul className="list-inside list-disc space-y-2">
+            <li>Google Ads: 광고 계정 정보, 캠페인 실적, 키워드 검색량 등 관련 데이터</li>
+            <li>Google Search Console: 사이트 목록, 검색 실적 데이터</li>
+          </ul>
+          <p>이용 목적: 광고 성과 분석, 키워드 조사, 검색 성과 분석에만 이용합니다.</p>
+          <p>저장: 조회한 데이터는 분석 업무를 위해 저장될 수 있으며, 최대 1년간 보관한 후 삭제합니다.</p>
+          <p>
+            공유: 법령상 의무가 있는 경우를 제외하고 Google 사용자 데이터를 제3자에게 판매하거나 제공하지
+            않습니다. 광고 목적으로도 이용하지 않습니다.
+          </p>
+          <p>
+            권한 철회: Google 계정 권한 페이지(
+            <a
+              href="https://myaccount.google.com/permissions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline underline-offset-2"
+            >
+              https://myaccount.google.com/permissions
+            </a>
+            )에서 언제든 접근 권한을 철회할 수 있습니다. 데이터 삭제 요청은{' '}
+            <a href="mailto:shinsy711@gmail.com" className="text-primary underline underline-offset-2">
+              shinsy711@gmail.com
+            </a>
+            으로 보내 주십시오.
+          </p>
+          <p>
+            커넥트웰의 Google API 데이터 사용은 제한적 사용(Limited Use) 요건을 포함한 Google API 서비스
+            사용자 데이터 정책(
+            <a
+              href="https://developers.google.com/terms/api-services-user-data-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline underline-offset-2"
+            >
+              https://developers.google.com/terms/api-services-user-data-policy
+            </a>
+            )을 따릅니다.
+          </p>
+        </Section>
+
+        <Section n={14} title="문의처">
           <p>
             개인정보 처리와 관련한 문의는 아래로 보내주세요. 영업일 기준 2~3일 이내 답변을 목표로 하고
             있습니다.
